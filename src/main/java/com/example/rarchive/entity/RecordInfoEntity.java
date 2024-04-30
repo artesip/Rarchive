@@ -1,7 +1,6 @@
 package com.example.rarchive.entity;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,7 +31,12 @@ public class RecordInfoEntity {
     @OneToOne(mappedBy = "recordInfoEntity")
     private RecordEntity recordEntity;
 
-    public RecordInfoEntity(){}
+    public RecordInfoEntity() {
+    }
+
+    public String getLogin() {
+        return recordEntity.getLogin();
+    }
 
     @Override
     public boolean equals(Object o) {

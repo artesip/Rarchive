@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/recordInfo")
 public class RecordInfoController {
+    private final RecordInfoService recordInfoService;
 
     @Autowired
-    private RecordInfoService recordInfoService;
+    RecordInfoController(RecordInfoService recordInfoService) {
+        this.recordInfoService = recordInfoService;
+    }
+
 
     @GetMapping
-    public ResponseEntity<?> getRecordsInfo(){
+    public ResponseEntity<?> getRecordsInfo() {
         return recordInfoService.getRecordsInfo();
     }
 
@@ -24,12 +28,12 @@ public class RecordInfoController {
     }
 
     @PutMapping
-    public ResponseEntity<String> updateRecordEntity(@RequestBody RecordInfoEntity newRecordInfo){
+    public ResponseEntity<String> updateRecordEntity(@RequestBody RecordInfoEntity newRecordInfo) {
         return recordInfoService.updateRecordInfo(newRecordInfo);
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteRecordInfo(@RequestParam(name = "record_info_id") long id){
+    public ResponseEntity<String> deleteRecordInfo(@RequestParam(name = "record_info_id") long id) {
         return recordInfoService.deleteRecordInfo(id);
     }
 }

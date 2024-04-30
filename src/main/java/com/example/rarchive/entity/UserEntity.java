@@ -1,9 +1,7 @@
 package com.example.rarchive.entity;
 
 
-import com.example.rarchive.config.SecurityConfig;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 

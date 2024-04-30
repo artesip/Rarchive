@@ -1,8 +1,6 @@
 package com.example.rarchive.entity;
 
-import com.example.rarchive.config.SecurityConfig;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,11 +34,16 @@ public class RecordEntity {
     @JoinColumn(name = "record_info_id", referencedColumnName = "id")
     private RecordInfoEntity recordInfoEntity;
 
-    public RecordEntity(){}
+    public RecordEntity() {
+    }
 
-    public void updateFields(RecordEntity fromRecord){
+    public void updateFields(RecordEntity fromRecord) {
         this.setGroupEntity(fromRecord.getGroupEntity());
         this.setRecordInfoEntity(fromRecord.getRecordInfoEntity());
+    }
+
+    public String getLogin() {
+        return groupEntity.getLogin();
     }
 
     @Override

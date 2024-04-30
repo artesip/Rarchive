@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface RecordRepository extends CrudRepository<RecordEntity, Long> {
-    Collection<RecordEntity> findAllByGroupEntity(GroupEntity group);
+    List<RecordEntity> findAllByGroupEntity(GroupEntity group);
 
     Optional<RecordEntity> findByRecordInfoEntity(RecordInfoEntity recordInfo);
 }

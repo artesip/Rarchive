@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/group")
 public class GroupController {
+    private final GroupService groupService;
 
     @Autowired
-    private GroupService groupService;
+    GroupController(GroupService groupService) {
+        this.groupService = groupService;
+    }
 
     @GetMapping
     public ResponseEntity<?> getGroups() {

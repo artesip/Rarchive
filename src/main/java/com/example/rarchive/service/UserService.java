@@ -3,6 +3,8 @@ package com.example.rarchive.service;
 
 import com.example.rarchive.config.SecurityConfig;
 import com.example.rarchive.entity.UserEntity;
+import com.example.rarchive.exception.NoSuchDataException;
+import com.example.rarchive.exception.UnauthorizedAccessException;
 import com.example.rarchive.model.UserModel;
 import com.example.rarchive.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,9 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
 
     public long getUserIdByLogin(String login) {
-        return userRepository.findByLogin(login).get().getId();
+        return userRepository.findByLogin(login).orElseThrow(
+                NoSuchDataException::new
+        ).getId();
     }
 
 
@@ -54,21 +58,22 @@ public class UserService implements UserDetailsService {
 
     public ResponseEntity<String> updateUser(UserEntity user) {
         try {
-
             String login = SecurityContextHolder.getContext().getAuthentication().getName();
 
             if (user == null || login == null) {
                 return ResponseEntity.badRequest().body("Empty user or login!\n");
             }
 
-            UserEntity userCopy = userRepository.findByLogin(login).get();
+            UserEntity userCopy = userRepository.findByLogin(login).orElseThrow(
+                    NoSuchDataException::new
+            );
 
-            if (!user.equals(userCopy)) {
-                userCopy.updateFields(user);
-                save(userCopy);
-            } else {
-                return null;
+            if (!userCopy.getLogin().equals(login)) {
+                throw new UnauthorizedAccessException();
             }
+
+            userCopy.updateFields(user);
+            save(userCopy);
 
             return ResponseEntity.ok("User was successfully updated!\n");
         } catch (Exception e) {
@@ -82,11 +87,11 @@ public class UserService implements UserDetailsService {
 
             userRepository.deleteByLogin(login);
 
-            if (userRepository.findByLogin(login).isEmpty()) {
-                return ResponseEntity.ok("User was successfully deleted!\n");
+            if (userRepository.findByLogin(login).isPresent()) {
+                return ResponseEntity.badRequest().body("Something went wrong!\n");
             }
 
-            return ResponseEntity.badRequest().body("Something went wrong!\n");
+            return ResponseEntity.ok("User was successfully deleted!\n");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Something went wrong!\n" + e.getMessage());
         }

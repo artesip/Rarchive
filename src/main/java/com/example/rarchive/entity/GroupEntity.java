@@ -1,8 +1,6 @@
 package com.example.rarchive.entity;
 
 import jakarta.persistence.*;
-
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,7 +27,12 @@ public class GroupEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupEntity")
     private List<RecordEntity> recordEntityList;
 
-    public GroupEntity() {}
+    public GroupEntity() {
+    }
+
+    public String getLogin() {
+        return user.getLogin();
+    }
 
     @Override
     public boolean equals(Object o) {
