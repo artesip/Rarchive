@@ -1,5 +1,6 @@
 FROM gradle:7.5.1-jdk17 as build
 WORKDIR /app
+COPY .env /app
 COPY gradle /app/gradle
 COPY gradlew /app/gradlew
 COPY build.gradle /app/build.gradle
