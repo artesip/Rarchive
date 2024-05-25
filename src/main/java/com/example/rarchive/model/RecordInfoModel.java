@@ -4,9 +4,11 @@ import com.example.rarchive.entity.RecordInfoEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class RecordInfoModel {
+public class RecordInfoModel implements Serializable {
     private String description;
 
     private int rating;

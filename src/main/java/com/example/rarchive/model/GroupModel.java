@@ -1,16 +1,16 @@
 package com.example.rarchive.model;
 
 import com.example.rarchive.entity.GroupEntity;
-import com.example.rarchive.entity.RecordEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
 @Setter
-public class GroupModel {
+public class GroupModel implements Serializable {
     private long id;
 
     private String title;

@@ -1,7 +1,7 @@
 version: '3'
 
 networks:
-  app-network:
+  network:
     driver: bridge
 
 services:
@@ -13,11 +13,11 @@ services:
       - "8080:8080"
     depends_on:
       - db
+      - redis
     networks:
-      - app-network
+      - network
     env_file:
-      - .env
-
+      - .env`
 
   db:
     container_name: db
@@ -31,4 +31,25 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks:
-      - app-network
+      - network
+
+  redis:
+    container_name: redis
+    image: redis:6.0.0
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - network
+    command: redis-server --save 20 1
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    ports:
+      - "8081:8081"
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    depends_on:
+      - redis
+    networks:
+      - network

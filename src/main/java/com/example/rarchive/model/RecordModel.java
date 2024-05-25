@@ -4,12 +4,12 @@ import com.example.rarchive.entity.RecordEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.text.DateFormat;
-import java.util.Date;
 
 @Getter
 @Setter
-public class RecordModel {
+public class RecordModel implements Serializable {
 
     private String groupTitle;
     private String title;

@@ -1,7 +1,6 @@
 #!/bin/bash
+chmod +x wait-for-it.sh
 
-/wait-for-it.sh db:3306 -t 60
+bash ./wait-for-it.sh db:3306 -t 60
 
-sleep 5
-
-java -jar app.jar
+java -jar app.jar --spring.config.location=src/main/resources/application.properties
