@@ -21,6 +21,11 @@ public class RecordController {
         return recordService.getRecords();
     }
 
+    @GetMapping
+    public ResponseEntity<?> getRecordsById(@RequestParam int id) {
+        return recordService.getRecordById(id);
+    }
+
     @PostMapping
     public ResponseEntity<?> addRecord(@RequestParam(name = "group_id") long groupId, @RequestBody RecordEntity record) {
         return recordService.addRecord(groupId, record);

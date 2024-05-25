@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateUser(@RequestBody UserEntity user) {
+    public ResponseEntity<String> updateUser(@RequestBody UserEntity user) {
         return userService.updateUser(user);
     }
 

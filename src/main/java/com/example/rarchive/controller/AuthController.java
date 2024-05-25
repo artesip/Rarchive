@@ -2,7 +2,7 @@ package com.example.rarchive.controller;
 
 import com.example.rarchive.entity.UserEntity;
 import com.example.rarchive.model.AuthRequest;
-import com.example.rarchive.service.AuthService;
+import com.example.rarchive.service.impl.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

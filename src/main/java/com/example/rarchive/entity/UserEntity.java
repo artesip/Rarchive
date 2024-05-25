@@ -33,7 +33,8 @@ public class UserEntity{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<GroupEntity> groupEntityList;
 
-    public UserEntity() {}
+    public UserEntity() {
+    }
 
     public void updateFields(UserEntity anotherUser) {
         if (anotherUser.getPassword() != null && !anotherUser.getPassword().isEmpty()) {

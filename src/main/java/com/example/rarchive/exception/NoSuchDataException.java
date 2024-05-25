@@ -1,6 +1,6 @@
 package com.example.rarchive.exception;
 
-public class NoSuchDataException extends RuntimeException{
+public class NoSuchDataException extends RuntimeException {
 
     public static final String errorMessage = "No such data!\n";
 

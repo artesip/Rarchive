@@ -16,10 +16,14 @@ public class RecordInfoController {
         this.recordInfoService = recordInfoService;
     }
 
-
     @GetMapping
     public ResponseEntity<?> getRecordsInfo() {
         return recordInfoService.getRecordsInfo();
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getRecordsInfoById(@RequestParam("id") long id) {
+        return recordInfoService.getRecordsInfoById(id);
     }
 
     @PostMapping

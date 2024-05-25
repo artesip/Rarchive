@@ -15,7 +15,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class JwtTokenUtil {
     @Value("${jwt.secret}")
-    private  String secret;
+    private String secret;
 
     @Value("${jwt.lifetime}")
     private Duration lifetime;
@@ -31,11 +31,11 @@ public class JwtTokenUtil {
                 .signWith(SignatureAlgorithm.HS256, secret).compact();
     }
 
-    public String getUsername(String token){
+    public String getUsername(String token) {
         return getAllClaims(token).getSubject();
     }
 
-    private Claims getAllClaims(String token){
+    private Claims getAllClaims(String token) {
         return Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)

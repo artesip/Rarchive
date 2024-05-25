@@ -1,6 +1,6 @@
 package com.example.rarchive.config;
 
-import com.example.rarchive.service.UserService;
+import com.example.rarchive.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,10 +25,10 @@ import java.security.SecureRandom;
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Autowired
-    private  JwtTokenFilter jwtTokenFilter;
+    private JwtTokenFilter jwtTokenFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {

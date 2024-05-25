@@ -6,8 +6,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.redis.core.RedisHash;
 
+<<<<<<< HEAD
 import java.io.Serializable;
 
+=======
+>>>>>>> 9434940 (refactoring)
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -15,7 +18,8 @@ import java.io.Serializable;
 public class UserModel implements Serializable {
     private String login;
     private String nickname;
-    public static UserModel toModel(UserEntity user){
+
+    public static UserModel toModel(UserEntity user) {
         UserModel userModel = new UserModel();
         userModel.setLogin(user.getLogin());
         userModel.setNickname(user.getNickname());

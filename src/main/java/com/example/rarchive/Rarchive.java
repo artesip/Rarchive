@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @EnableCaching
 @SpringBootApplication
 public class Rarchive {
-	public static void main(String[] args) {
-		SpringApplication.run(Rarchive.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Rarchive.class, args);
+    }
 }
