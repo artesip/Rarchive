@@ -21,8 +21,8 @@ public class RecordInfoController {
         return recordInfoService.getRecordsInfo();
     }
 
-    @GetMapping
-    public ResponseEntity<?> getRecordsInfoById(@RequestParam("id") long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getRecordsInfoById(@PathVariable long id) {
         return recordInfoService.getRecordsInfoById(id);
     }
 

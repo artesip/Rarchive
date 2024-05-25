@@ -21,8 +21,8 @@ public class RecordController {
         return recordService.getRecords();
     }
 
-    @GetMapping
-    public ResponseEntity<?> getRecordsById(@RequestParam int id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getRecordsById(@PathVariable long id) {
         return recordService.getRecordById(id);
     }
 

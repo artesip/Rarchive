@@ -5,12 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.redis.core.RedisHash;
-
-<<<<<<< HEAD
 import java.io.Serializable;
 
-=======
->>>>>>> 9434940 (refactoring)
 @Getter
 @Setter
 @EqualsAndHashCode

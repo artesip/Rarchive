@@ -8,6 +8,7 @@ import com.example.rarchive.model.RecordInfoModel;
 import com.example.rarchive.repository.RecordInfoRepository;
 import com.example.rarchive.service.RecordInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Service
+@Primary
 public class RecordInfoServiceImpl implements RecordInfoService {
     @Autowired
     private RecordInfoRepository recordInfoRepository;

@@ -20,10 +20,22 @@ public class JwtTokenUtil {
     @Value("${jwt.lifetime}")
     private Duration lifetime;
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateAccessToken(UserDetails userDetails) {
 
         Date currentTime = new Date();
         Date tokenDeath = new Date(currentTime.getTime() + lifetime.toMillis());
+        return Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(currentTime)
+                .setExpiration(tokenDeath)
+                .signWith(SignatureAlgorithm.HS256, secret).compact();
+    }
+
+    public String generateRefreshToken(UserDetails userDetails) {
+
+        Date currentTime = new Date();
+        // If i calculate it is one month
+        Date tokenDeath = new Date(currentTime.getTime() + lifetime.toMillis() * 2 * 24 * 30);
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(currentTime)

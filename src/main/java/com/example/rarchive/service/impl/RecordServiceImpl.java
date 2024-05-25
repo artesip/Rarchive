@@ -9,6 +9,7 @@ import com.example.rarchive.repository.RecordRepository;
 import com.example.rarchive.service.GroupService;
 import com.example.rarchive.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.Optional;
 
 
 @Service
+@Primary
 public class RecordServiceImpl implements RecordService {
 
     private final RecordRepository recordRepository;

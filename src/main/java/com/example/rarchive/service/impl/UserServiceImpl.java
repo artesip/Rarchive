@@ -10,6 +10,7 @@ import com.example.rarchive.repository.UserRepository;
 import com.example.rarchive.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,11 +22,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
+@Primary
 public class UserServiceImpl implements UserDetailsService, UserService {
 
     private final UserRepository userRepository;
@@ -48,13 +50,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public Optional<UserEntity> findUserByLogin(String login) {
-        var temp = redisTemplate.opsForValue().get(login);
-        if(temp == null){
-            var temp2 = userRepository.findByLogin(login);
-            redisTemplate.opsForValue().set(login, temp2.get());
-            return temp2;
-        }
-        return Optional.ofNullable(objectMapper.convertValue(temp, UserEntity.class));
+        return userRepository.findByLogin(login);
     }
 
     @Override
